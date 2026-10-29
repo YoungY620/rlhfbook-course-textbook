@@ -8,7 +8,7 @@
 
 我们要测量的任务也越来越长。前沿模型能以 50% 成功率完成的任务时长**大约每 7 个月翻一倍**——从几秒的问题到人类专家需要数小时的任务。
 
-![前沿模型的任务完成时间跨度。图来自 METR（Time Horizon 1.1）。](../assets/metr-time-horizon-11.png)
+![前沿模型的任务完成时间跨度。图来自 METR（Time Horizon 1.1）。](assets/metr-time-horizon-11.png)
 
 ## 第一部分：后训练评估的几个时代
 
@@ -170,7 +170,7 @@ Answer the above question and REMEMBER to finish your response with the exact ph
 
 基准是可消耗的。分数接近天花板时，只剩最难（且标注有误）的题，基准不再能区分模型。
 
-![主要 AI 基准随时间达到饱和。图来自 Epoch AI。](../assets/benchmark-performance.jpeg)
+![主要 AI 基准随时间达到饱和。图来自 Epoch AI。](assets/benchmark-performance.jpeg)
 
 ## 第二部分：关于 agentic 评估的补充
 
@@ -178,7 +178,7 @@ Answer the above question and REMEMBER to finish your response with the exact ph
 
 **Harness**——围绕模型的提示、工具与上下文管理循环——运行在**沙箱**中：一个包含任务文件、工具与规则的可复现世界。加上硬件与超时，数小时轨迹由正则或 LLM 评审打分。
 
-![Agentic 评估流水线。](../assets/eval-system-v3.png)
+![Agentic 评估流水线。](assets/eval-system-v3.png)
 
 ### Harness 很关键
 
@@ -223,7 +223,7 @@ Answer the above question and REMEMBER to finish your response with the exact ph
 - 没人披露哪些公开基准被**留出 vs. 被爬取**——从外部看不到训练/开发/测试卫生。
 - 推理时缩放混淆一切：更多 token 买更多分数，而 token 预算很少受控。
 
-![智能指数 vs. 每任务成本，并绘制帕累托前沿。图来自 Artificial Analysis。](../assets/aa-intelligence-cost-pareto.png)
+![智能指数 vs. 每任务成本，并绘制帕累托前沿。图来自 Artificial Analysis。](assets/aa-intelligence-cost-pareto.png)
 
 ### 实验室内部评估的真正用途
 

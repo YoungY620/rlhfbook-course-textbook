@@ -38,7 +38,7 @@ ref_token_lp = gather(ref_logprobs, tokens)
 kl_approx = token_lp.sum(-1) - ref_token_lp.sum(-1)
 ```
 
-![An OLMo-2-7B GRPO run, RL directly on the base model (R1-Zero-style, no SFT): verifiable reward climbs while logged KL to the reference rises and then wanders. This run has β = 0.](../assets/olmo2-grpo-zero-reward-kl.png)
+![An OLMo-2-7B GRPO run, RL directly on the base model (R1-Zero-style, no SFT): verifiable reward climbs while logged KL to the reference rises and then wanders. This run has β = 0.](assets/olmo2-grpo-zero-reward-kl.png)
 
 ### Static or dynamic KL penalties? β began as a feedback controller
 
@@ -131,7 +131,7 @@ On V-IRL, RL improves out-of-distribution accuracy **80.8% → 91.8%**. SFT coll
 
 The naive read: forward KL is *mass-covering*, so SFT should preserve every mode — while mode-seeking RL should collapse onto one and forget the rest. This intuition assumes a unimodal policy, but LLMs are multimodal (Chen et al., 2025).
 
-![Mode intuition for retention: LLMs are multimodal, so reverse KL does not necessarily collapse everything.](../assets/retaining_by_doing_mode_intuition.png)
+![Mode intuition for retention: LLMs are multimodal, so reverse KL does not necessarily collapse everything.](assets/retaining_by_doing_mode_intuition.png)
 
 ### RL’s razor: lower KL drift for equivalent performance
 
@@ -139,7 +139,7 @@ The naive read: forward KL is *mass-covering*, so SFT should preserve every mode
 
 Forgetting tracks KL drift: $\\text{Forgetting} \\approx f\\!\\left(\\mathbb{E}\_{x \\sim \\tau}\\!\\left[D\_{\\mathrm{KL}}\\!\\left(\\pi\_0 \\,\\|\\, \\pi\\right)\\right]\\right)$ with $R^2 = 0.96$, measured on the new task’s data — a cheap forgetting predictor. The ablation shows that **on-policy data fully accounts for the difference** — negative gradients have no discernible effect (Shenfeld et al., 2026).
 
-![Among policies that solve the new task, RL converges to those closest in KL to the base model, yielding higher prior-task retention at matched new-task performance.](../assets/rl_razor_motivation.png)
+![Among policies that solve the new task, RL converges to those closest in KL to the base model, yielding higher prior-task retention at matched new-task performance.](assets/rl_razor_motivation.png)
 
 ## Part 4: Other tools to control optimization
 
@@ -163,7 +163,7 @@ Tool use is changing what regularization has to do. In agentic recipes, the KL-t
 
 **DPPO** (Divergence Proximal Policy Optimization) masks tokens by a *directly estimated* divergence between the rollout and training policies (binary Total Variation), instead of PPO’s per-token ratio clip. The per-token ratio is a noisy one-sample estimate of that divergence. GLM’s IcePop and Kimi’s log-ratio interval do the same job: gradients masked, not clipped. This is where the eye of regularization is today — algorithmic updates rather than KL penalties.
 
-![The motivation from the DPPO paper: for the same rollout tokens, per-token probability ratios (left) explode at low probabilities while the directly-estimated TV divergence (right) stays stable.](../assets/dppo-ratio-vs-tv.png)
+![The motivation from the DPPO paper: for the same rollout tokens, per-token probability ratios (left) explode at low probabilities while the directly-estimated TV divergence (right) stays stable.](assets/dppo-ratio-vs-tv.png)
 
 ## Key Takeaways
 

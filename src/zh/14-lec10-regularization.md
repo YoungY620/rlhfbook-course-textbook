@@ -38,7 +38,7 @@ ref_token_lp = gather(ref_logprobs, tokens)
 kl_approx = token_lp.sum(-1) - ref_token_lp.sum(-1)
 ```
 
-![OLMo-2-7B GRPO 运行，直接在基座模型上做 RL（R1-Zero 风格，无 SFT）：可验证奖励攀升，而记录的对参考模型的 KL 上升后徘徊。该运行 β = 0。](../assets/olmo2-grpo-zero-reward-kl.png)
+![OLMo-2-7B GRPO 运行，直接在基座模型上做 RL（R1-Zero 风格，无 SFT）：可验证奖励攀升，而记录的对参考模型的 KL 上升后徘徊。该运行 β = 0。](assets/olmo2-grpo-zero-reward-kl.png)
 
 ### 静态还是动态 KL 惩罚？β 最初是反馈控制器
 
@@ -131,7 +131,7 @@ $$ D\_{\\mathrm{KL}}(\\pi\_\\theta \\,\\|\\, \\pi\_\\star) = \\mathbb{E}\_{y \\s
 
 朴素直觉：forward KL *质量覆盖*，所以 SFT 应保留每个模式；而 mode-seeking 的 RL 应坍缩到一个模式并遗忘其余。该直觉假设策略是单峰的，但 LLM 是多峰的（Chen 等，2025）。
 
-![保持率的模式直觉：LLM 是多峰的，因此 reverse KL 不一定坍缩所有模式。](../assets/retaining_by_doing_mode_intuition.png)
+![保持率的模式直觉：LLM 是多峰的，因此 reverse KL 不一定坍缩所有模式。](assets/retaining_by_doing_mode_intuition.png)
 
 ### RL 剃刀：同等性能下 KL 漂移更小
 
@@ -139,7 +139,7 @@ $$ D\_{\\mathrm{KL}}(\\pi\_\\theta \\,\\|\\, \\pi\_\\star) = \\mathbb{E}\_{y \\s
 
 遗忘与 KL 漂移相关：$\\text{Forgetting} \\approx f\\!\\left(\\mathbb{E}\_{x \\sim \\tau}\\!\\left[D\_{\\mathrm{KL}}\\!\\left(\\pi\_0 \\,\\|\\, \\pi\\right)\\right]\\right)$，$R^2 = 0.96$，在新任务数据上测量——一个廉价的遗忘预测器。消融实验显示**同策略数据完全解释了这种差异**——负梯度没有可辨影响（Shenfeld 等，2026）。
 
-![在能解决新任务的策略中，RL 收敛到离基座模型 KL 最近的那些，从而在同等新任务性能下获得更高的先前任务保持率。](../assets/rl_razor_motivation.png)
+![在能解决新任务的策略中，RL 收敛到离基座模型 KL 最近的那些，从而在同等新任务性能下获得更高的先前任务保持率。](assets/rl_razor_motivation.png)
 
 ## 第四部分：控制优化的其他工具
 
@@ -163,7 +163,7 @@ $$ D\_{\\mathrm{KL}}(\\pi\_\\theta \\,\\|\\, \\pi\_\\star) = \\mathbb{E}\_{y \\s
 
 **DPPO**（Divergence Proximal Policy Optimization）用*直接估计*的 rollout 策略与训练策略之间的散度（二元全变差）来屏蔽 token，而不是 PPO 的逐 token 比率裁剪。逐 token 比率只是该散度的带噪单样本估计。GLM 的 IcePop 与 Kimi 的对数比率区间做同样的事：屏蔽梯度而非裁剪。这就是当今正则化的焦点——算法更新而非 KL 惩罚。
 
-![DPPO 论文的动机：对同一批 rollout token，逐 token 概率比率（左）在低概率处爆炸，而直接估计的 TV 散度（右）保持稳定。](../assets/dppo-ratio-vs-tv.png)
+![DPPO 论文的动机：对同一批 rollout token，逐 token 概率比率（左）在低概率处爆炸，而直接估计的 TV 散度（右）保持稳定。](assets/dppo-ratio-vs-tv.png)
 
 ## 要点小结
 

@@ -71,7 +71,7 @@ print(str(C / S)[:52])
 
 在 ReAct 之前，推理（思维链）与动作（工具调用）是两个独立文献。把二者交织在同一个 token 流中，是每个现代 agent 仍在使用的模式——o3 的“思考中调用工具”就是这一想法用 RL 放大后的版本。
 
-![ReAct 论文，2022 年 10 月首次发布（ICLR 2023）。](../assets/react-paper.jpg)
+![ReAct 论文，2022 年 10 月首次发布（ICLR 2023）。](assets/react-paper.jpg)
 
 ### Toolformer：模型“自学”工具
 
@@ -84,7 +84,7 @@ print(str(C / S)[:52])
 
 无需人类工具调用演示——合成数据飞轮的早期实例。
 
-![Toolformer 的示例预测：模型自行决定在文本中间调用问答系统、计算器、翻译器和维基百科搜索。](../assets/toolformer-examples.jpg)
+![Toolformer 的示例预测：模型自行决定在文本中间调用问答系统、计算器、翻译器和维基百科搜索。](assets/toolformer-examples.jpg)
 
 ### 如何评估工具调用
 
@@ -99,7 +99,7 @@ print(str(C / S)[:52])
 
 ### 单一 token 流——工具在生成中插入 token
 
-![模型生成直到发出工具调用（橙色）；外部系统执行并把输出（紫色）注入序列；模型继续。一次生成中可有多个工具调用。训练时，工具调用输出被掩码，不计入损失。](../assets/tool_use_generation.png)
+![模型生成直到发出工具调用（橙色）；外部系统执行并把输出（紫色）注入序列；模型继续。一次生成中可有多个工具调用。训练时，工具调用输出被掩码，不计入损失。](assets/tool_use_generation.png)
 
 ### 模型只看到 token：工具存在于系统提示中
 
@@ -200,7 +200,7 @@ Claude Code、Codex CLI 与 OpenHands 都是流行的 harness——同一模型�
 
 ### 同样的后训练方法适用
 
-![工具调用 RL 循环。](../assets/tool_use_rl_loop.png)
+![工具调用 RL 循环。](assets/tool_use_rl_loop.png)
 
 - **SFT** 工具轨迹——格式与工具选择；建立技能。
 - **偏好微调** 仍然有效，但今天不那么流行。
@@ -226,7 +226,7 @@ Claude Code、Codex CLI 与 OpenHands 都是流行的 harness——同一模型�
 - **TMax-9B：Terminal-Bench 2.0 上 27.2%**——10B 以下最强开放权重模型，超过先前工作的 32B 变体。
 - 代码、数据与模型全部发布。
 
-![模型规模 vs. Terminal-Bench 2.0：TMax 模型（2B–27B）位于开放配方帕累托前沿。](../assets/tmax-results.jpg)
+![模型规模 vs. Terminal-Bench 2.0：TMax 模型（2B–27B）位于开放配方帕累托前沿。](assets/tmax-results.jpg)
 
 ### 真正困难之处
 
@@ -241,7 +241,7 @@ Claude Code、Codex CLI 与 OpenHands 都是流行的 harness——同一模型�
 
 Kimi K3（2026 年 7 月）只用一句话介绍其 RL 算法（“遵循 Kimi K2.5 的算法”），却用约七页篇幅介绍环境与沙箱：训练期间创建了 **51,219,741 个沙箱**，可在 133ms 内 checkpoint 的 microVM，以及 mock Gmail/Notion/Slack“活环境”，其中一次 rollout 可跨越数千次工具调用。沙箱一生中高达 98% 的时间在闲置等待推理——因此需要暂停它们。
 
-![Kimi K3：分数与平均助手步数都随 RL FLOPs 在八个 agentic 领域扩展——工具调用深度是学出来的，不是提示出来的。](../assets/kimi-k3-rl-scaling.jpg)
+![Kimi K3：分数与平均助手步数都随 RL FLOPs 在八个 agentic 领域扩展——工具调用深度是学出来的，不是提示出来的。](assets/kimi-k3-rl-scaling.jpg)
 
 ### 前沿实践：harness 随机化
 
@@ -267,7 +267,7 @@ Nemotron 3 Ultra 指出，随着环境增多，“每个领域对任一给定训
 
 GLM-5 的幻灯片 RL 策略发现了 `overflow: hidden` 让溢出的幻灯片*测量*为 16:9，以及 flex-padding 拉伸短幻灯片——修复方法是给渲染器打补丁，而非改奖励。Nemotron 物理删除未来 git 提交并防火墙 GitHub，防止 SWE agent 读取金补丁；Kimi K3 提供内核漏洞检测器与公开/隐藏验证器对。
 
-![GLM-5：幻灯片生成 RL 中的两个奖励黑客，以及策略编写的漏洞 CSS。](../assets/glm5-reward-hacking.jpg)
+![GLM-5：幻灯片生成 RL 中的两个奖励黑客，以及策略编写的漏洞 CSS。](assets/glm5-reward-hacking.jpg)
 
 ### 更多头疼问题
 

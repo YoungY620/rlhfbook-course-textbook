@@ -8,7 +8,7 @@ Frontier evaluation is harder than it ever has been. When Opus 4.6 and GPT-5.3-C
 
 And the tasks we are trying to measure keep taking longer. The task length frontier models can complete (at 50% success) **doubles roughly every 7 months** — from seconds-long questions to tasks that take human experts hours.
 
-![Task-completion time horizon of frontier models. Figure from METR (Time Horizon 1.1).](../assets/metr-time-horizon-11.png)
+![Task-completion time horizon of frontier models. Figure from METR (Time Horizon 1.1).](assets/metr-time-horizon-11.png)
 
 ## Part 1: The eras of post-training evaluation
 
@@ -170,7 +170,7 @@ The official answer is wrong three ways: oganesson is **not a gas** (predicted s
 
 Benchmarks are consumable. As scores approach the ceiling, only the hardest (and mislabeled) items remain, and the benchmark stops separating models.
 
-![Major AI benchmarks reaching saturation over time. Figure from Epoch AI.](../assets/benchmark-performance.jpeg)
+![Major AI benchmarks reaching saturation over time. Figure from Epoch AI.](assets/benchmark-performance.jpeg)
 
 ## Part 2: A bit more on agentic evals
 
@@ -178,7 +178,7 @@ Benchmarks are consumable. As scores approach the ceiling, only the hardest (and
 
 A **harness** — the loop of prompts, tools, and context management around the model — runs in a **sandbox**: a reproducible world with the files, tools, and rules of the task. Add hardware and timeouts, and hours-long trajectories get graded by regex or an LLM judge.
 
-![The agentic evaluation pipeline.](../assets/eval-system-v3.png)
+![The agentic evaluation pipeline.](assets/eval-system-v3.png)
 
 ### Harnesses are key
 
@@ -223,7 +223,7 @@ Sampling at temperature > 0 means **re-running the same eval on the same model m
 - Nobody discloses which public benchmarks were **held out vs. hillclimbed** — train/dev/test hygiene is invisible from outside.
 - Inference-time scaling confounds everything: more tokens buys more score, and token budgets are rarely controlled.
 
-![Intelligence Index vs. cost per task, with the Pareto frontier drawn. Figure from Artificial Analysis.](../assets/aa-intelligence-cost-pareto.png)
+![Intelligence Index vs. cost per task, with the Pareto frontier drawn. Figure from Artificial Analysis.](assets/aa-intelligence-cost-pareto.png)
 
 ### What evals are actually for inside labs
 

@@ -33,7 +33,7 @@ Before ChatGPT, Anthropic’s first assistant paper set the alignment target as 
 
 > “We do not focus explicitly on honesty/truthfulness in this paper, as we believe that techniques other than pure human feedback may be more efficient and effective at training models to be honest.”
 
-![Anthropic's "helpful, honest, and harmless" paper (2021).](../assets/hhh-paper-2021.png)
+![Anthropic's "helpful, honest, and harmless" paper (2021).](assets/hhh-paper-2021.png)
 
 ### 2022: What is Claude’s Constitution?
 
@@ -41,7 +41,7 @@ Constitutional AI (December 2022) introduced the **constitution**: a *plain-text
 
 The key property: the constitution is a **training input** — principles sampled inside the data-generation pipeline, not a statement of final behavior.
 
-![The Constitutional AI pipeline.](../assets/cai-overview.png)
+![The Constitutional AI pipeline.](assets/cai-overview.png)
 
 ### Anthropic has long led on this topic (2024)
 
@@ -118,25 +118,25 @@ The current Model Spec is markdown, versioned on GitHub, public domain (CC0). It
 
 The first open replication of the frontier recipe (Maiya, Bartsch, Lambert, Hubinger, 2025), with public code and data. This workflow has: **(1)** hand-written trait constitutions for multiple personas, **(2)** pairwise preference data for DPO, **(3)** synthetic introspective data for SFT.
 
-![The Open Character Training pipeline.](../assets/oct-pipeline.png)
+![The Open Character Training pipeline.](assets/oct-pipeline.png)
 
 ### Fine-tuning wins on robustness
 
 Train a persona classifier (look at the outputs of a model and identify which persona it is like), then prompt the models to “break out of character”: system prompts break easily, steering is inconsistent across models, and fine-tuned character keeps expressing its traits. This is intuitive but hadn’t been shown.
 
-![Character robustness: prompting breaks, steering is inconsistent, fine-tuning persists.](../assets/oct-robustness.png)
+![Character robustness: prompting breaks, steering is inconsistent, fine-tuning persists.](assets/oct-robustness.png)
 
 ### Measuring character: revealed preferences
 
 A fun eval from the paper: instruct the model to embody one of two traits **without verbalizing the choice**, LLM-judge which trait each of 25,000 responses expresses, and compute an **Elo score per trait**. Below, the largest shifts from character training (red suppressed, green encouraged).
 
-![Revealed-preference Elo shifts across traits.](../assets/oct-revealed-preferences.png)
+![Revealed-preference Elo shifts across traits.](assets/oct-revealed-preferences.png)
 
 ### Character training makes preferences stronger
 
 The full Elo distributions over ~150 traits, before and after training: wider and flatter — the assistant becomes more **“opinionated.”** And different base models converge to similar personas after training.
 
-![Elo distributions before and after character training.](../assets/oct-elo-distributions.png)
+![Elo distributions before and after character training.](assets/oct-elo-distributions.png)
 
 ### An example of different personas
 
@@ -166,13 +166,13 @@ $$\\mathbf{v}\_\\ell = \\frac{1}{|S^+|} \\sum\_{i \\in S^+} \\mathbf{a}\_\\ell^{
 
 Steer by adding it back at inference: $\\mathbf{h}\_\\ell \\leftarrow \\mathbf{h}\_\\ell + \\alpha\\,\\mathbf{v}\_\\ell$. Traits dial almost perfectly linearly with $\\alpha$ ($R^2 > 0.94$) and **compose by arithmetic**.
 
-![Contrastive extraction (top); steering (bottom).](../assets/persona-vectors-pipeline.png)
+![Contrastive extraction (top); steering (bottom).](assets/persona-vectors-pipeline.png)
 
 ### The Assistant Axis: where the default persona lives
 
 Extract vectors for 275+ character archetypes and run PCA across them: **PC1 is assistant-likeness (helpful, etc)** (robustly, the contrast $\\mathbf{v}\_{\\text{axis}} = \\bar{\\mathbf{h}}\_{\\text{assistant}} - \\bar{\\mathbf{h}}\_{\\text{roles}}$). Therapy-like conversations **drift away from the Assistant region turn by turn** — unchecked, into reinforced delusions and encouraged isolation.
 
-![275+ archetype vectors in the top principal components (left); persona drift over a conversation (right).](../assets/assistant_axis.png)
+![275+ archetype vectors in the top principal components (left); persona drift over a conversation (right).](assets/assistant_axis.png)
 
 ### Activation capping for precise intervention
 

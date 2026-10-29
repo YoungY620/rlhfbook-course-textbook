@@ -33,7 +33,7 @@ Anthropic 的可解释性团队证明个性存在于模型内部：Golden Gate C
 
 > “本文不明确关注诚实/真实性，因为我们认为纯人类反馈之外的技术可能更高效地训练模型诚实。”
 
-![Anthropic 的“有用、诚实、无害”论文（2021）。](../assets/hhh-paper-2021.png)
+![Anthropic 的“有用、诚实、无害”论文（2021）。](assets/hhh-paper-2021.png)
 
 ### 2022：Claude 的宪法是什么？
 
@@ -41,7 +41,7 @@ Anthropic 的可解释性团队证明个性存在于模型内部：Golden Gate C
 
 关键属性：宪法是**训练输入**——在数据生成流水线中采样的原则，而非对最终行为的声明。
 
-![宪法 AI 流水线。](../assets/cai-overview.png)
+![宪法 AI 流水线。](assets/cai-overview.png)
 
 ### Anthropic 长期在此领域领先（2024）
 
@@ -118,25 +118,25 @@ Claude 模型开始描述一份 Anthropic 从未宣布的**“灵魂文档”**�
 
 对前沿配方的首次公开复现（Maiya、Bartsch、Lambert、Hubinger，2025），附带公开代码与数据。该工作流包括：**(1)** 为多个 persona 手写特质宪法，**(2)** 用于 DPO 的成对偏好数据，**(3)** 用于 SFT 的合成内省数据。
 
-![开放角色训练流水线。](../assets/oct-pipeline.png)
+![开放角色训练流水线。](assets/oct-pipeline.png)
 
 ### 微调在稳健性上胜出
 
 训练一个 persona 分类器（看模型输出并识别它像哪个 persona），然后提示模型“跳出角色”：系统提示很容易被打破，引导在不同模型间不一致，而微调过的角色会持续表达其特质。这很直觉，但此前未被证明。
 
-![角色稳健性：提示易破，引导不一致，微调持久。](../assets/oct-robustness.png)
+![角色稳健性：提示易破，引导不一致，微调持久。](assets/oct-robustness.png)
 
 ### 测量角色：显示性偏好
 
 论文中一个有趣的评估：指示模型体现两种特质之一，但**不得明说选择**，用 LLM 评审判断 25,000 条回答各自表达哪种特质，并计算每个特质的 **Elo 分数**。下图为角色训练带来的最大位移（红色受抑，绿色受鼓励）。
 
-![跨特质的显示性偏好 Elo 位移。](../assets/oct-revealed-preferences.png)
+![跨特质的显示性偏好 Elo 位移。](assets/oct-revealed-preferences.png)
 
 ### 角色训练让偏好更强
 
 约 150 个特质的完整 Elo 分布，训练前后：更宽更平——助手变得更**“有主见”**。不同基座模型在训练后收敛到相似 persona。
 
-![角色训练前后的 Elo 分布。](../assets/oct-elo-distributions.png)
+![角色训练前后的 Elo 分布。](assets/oct-elo-distributions.png)
 
 ### 不同 persona 示例
 
@@ -166,13 +166,13 @@ $$\\mathbf{v}\_\\ell = \\frac{1}{|S^+|} \\sum\_{i \\in S^+} \\mathbf{a}\_\\ell^{
 
 推理时加回去进行引导：$\\mathbf{h}\_\\ell \\leftarrow \\mathbf{h}\_\\ell + \\alpha\\,\\mathbf{v}\_\\ell$。特质随 $\\alpha$ 几乎完全线性可调（$R^2 > 0.94$），且**可按算术组合**。
 
-![对比提取（上）；引导（下）。](../assets/persona-vectors-pipeline.png)
+![对比提取（上）；引导（下）。](assets/persona-vectors-pipeline.png)
 
 ### 助手轴：默认 persona 所在之处
 
 提取 275+ 个角色原型的向量并在其上跑 PCA：**PC1 是“助手性”（helpful 等）**（稳健地，对比 $\\mathbf{v}\_{\\text{axis}} = \\bar{\\mathbf{h}}\_{\\text{assistant}} - \\bar{\\mathbf{h}}\_{\\text{roles}}$）。类似治疗的对话会**逐轮漂移出助手区域**——若不加控制，会进入强化妄想与鼓励孤立。
 
-![275+ 原型向量在前两个主成分中（左）；对话中 persona 漂移（右）。](../assets/assistant_axis.png)
+![275+ 原型向量在前两个主成分中（左）；对话中 persona 漂移（右）。](assets/assistant_axis.png)
 
 ### 激活封顶：精确干预
 

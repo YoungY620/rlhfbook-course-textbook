@@ -126,13 +126,13 @@ Richer signal, harder collection, and not often used extensively in practice.
 
 Access is relationship-driven: vendors are supply-limited and favor big budgets and known brands. Millions get spent and partly wasted; few teams have the bandwidth to fully use human data. Contracts often restrict release of some data. Even for simple human preference data, you need a robust, existing post-training recipe to plug it into.
 
-![A typical multi-batch human-data contract (~\$500K): an early ramp where goals and methodology narrow, with much of the first batches thrown out.](../assets/pref-data-timeline.png)
+![A typical multi-batch human-data contract (~\$500K): an early ramp where goals and methodology narrow, with much of the first batches thrown out.](assets/pref-data-timeline.png)
 
 ### Guiding data collection: labeler instructions
 
 Once a contract is signed, buyer and vendor agree on **detailed instructions** for every task — normally never seen outside the lab. One of the first *public* examples was OpenAI’s **InstructGPT** labeler instructions (2022), pages of guidance on ranking **helpful, truthful, harmless** — the spec that actually shapes the labels. A mirrored PDF is available at [rlhfbook.com/assets/instructgpt-instructions.pdf](https://rlhfbook.com/assets/instructgpt-instructions.pdf).
 
-![InstructGPT "Final labeling instructions" (OpenAI, 2022).](../assets/instructgpt-instructions.jpg)
+![InstructGPT "Final labeling instructions" (OpenAI, 2022).](assets/instructgpt-instructions.jpg)
 
 ### A dataset we bought: No Robots
 

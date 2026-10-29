@@ -34,7 +34,7 @@ OpenAI 异常坦诚的事后复盘指出三件事接连出错：
 
 **过度优化**：模型在代理目标上*确实在提升*——奖励模型的分数（包括在验证集上）——但该目标与真实目标（用户实际满意度）发生偏离。它不是泛化问题，而是测量/指标问题。钻空子的表现是：冗长、听起来自信、得分高却并未更有帮助；或重复稀有 token 以命中 RM 训练中的伪影。
 
-![过度优化的形状：代理奖励持续攀升，真实质量先升后降。](../assets/overoptimization.png)
+![过度优化的形状：代理奖励持续攀升，真实质量先升后降。](assets/overoptimization.png)
 
 RLHF 训练运行的常见形状：运行看起来健康——训练奖励不断攀升——但下游评估达到峰值后下降。收益来自奖励模型中并不对应真实使用的区域。
 
@@ -46,9 +46,9 @@ RLHF 训练运行的常见形状：运行看起来健康——训练奖励不断
 - 更小的**代理 RM（3M–3B）** 在这些标签上训练；RL 只优化*代理*。
 - 用两者给策略打分。代理（虚线）永远攀升；黄金（实线）达到峰值后下降。
 
-![Best-of-N：黄金奖励（实线）变平并下降，代理（虚线）持续攀升。](../assets/gao-overopt-bon.png)
+![Best-of-N：黄金奖励（实线）变平并下降，代理（虚线）持续攀升。](assets/gao-overopt-bon.png)
 
-![RL：形状相同，但花费约 10 倍 KL——小 RM 的转折更剧烈。](../assets/gao-overopt-rl.png)
+![RL：形状相同，但花费约 10 倍 KL——小 RM 的转折更剧烈。](assets/gao-overopt-rl.png)
 
 更大的代理 RM 更晚、更平缓地转折。由于“黄金标签训练代理”本身也是代理，真实模型的偏离方式略有不同。
 
@@ -60,7 +60,7 @@ Anthropic 的过度优化版本：
 - 只对训练 PM 做 RL；用两者给策略打分。
 - x 轴是相对于初始策略的 $\\sqrt{D\_{\\mathrm{KL}}}$（策略改变了多少）。
 
-![Anthropic 的训练 PM vs 测试 PM 实验。](../assets/anthropic_overoptimization.png)
+![Anthropic 的训练 PM vs 测试 PM 实验。](assets/anthropic_overoptimization.png)
 
 ### 过度优化的模型听起来什么样
 
@@ -129,7 +129,7 @@ RLHF 早期的一个阶段是让人们相信风格有时确实有用，而不只
 
 2024 年 4 月，Direct Nash Optimization 报告一个 7B 模型在 AlpacaEval 上“击败 GPT-4”；Self-Rewarding LMs 也披露了类似不切实际的高分。在真实使用中，它们都敌不过前沿模型。严重到 AlpacaEval 与 WildBench 都加入了**线性长度校正**。做得对的例子：Starling Beta——在 OpenChat 上用 k-wise 奖励模型 + PPO，Arena 上升 10 位，长度确实对评分者有帮助。
 
-![Direct Nash Optimization 论文中声称 7B 模型在 AlpacaEval 上优于 GPT-4 的结果。](../assets/dno-figure.png)
+![Direct Nash Optimization 论文中声称 7B 模型在 AlpacaEval 上优于 GPT-4 的结果。](assets/dno-figure.png)
 
 ### Llama 4 的 Chatbot Arena 特供（2025 年 4 月）
 

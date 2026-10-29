@@ -71,7 +71,7 @@ print(str(C / S)[:52])
 
 Before ReAct, reasoning (chain-of-thought) and acting (tool calls) were separate literatures. Interleaving them in one token stream is the pattern every modern agent still uses — o3’s tool-calls-inside-thinking is this idea, scaled up with RL.
 
-![The ReAct paper, first posted October 2022 (ICLR 2023).](../assets/react-paper.jpg)
+![The ReAct paper, first posted October 2022 (ICLR 2023).](assets/react-paper.jpg)
 
 ### Toolformer: models “teach themselves” tools
 
@@ -84,7 +84,7 @@ Tools: “a calculator, a Q&A system, two different search engines, a translatio
 
 No human tool-use demonstrations required — an early instance of synthetic-data flywheels.
 
-![Toolformer’s exemplary predictions: the model decides on its own to call a QA system, a calculator, a translator, and Wikipedia search mid-text.](../assets/toolformer-examples.jpg)
+![Toolformer’s exemplary predictions: the model decides on its own to call a QA system, a calculator, a translator, and Wikipedia search mid-text.](assets/toolformer-examples.jpg)
 
 ### How tool use is evaluated
 
@@ -99,7 +99,7 @@ The eval ladder mirrors the capability ladder: format → selection → consiste
 
 ### One token stream — tools add tokens mid-generation
 
-![The model generates until it emits a tool call (orange); an external system executes it and injects the output (purple) into the sequence; the model continues. Multiple tool calls can occur in a single generation. During training, tool call outputs are masked from the loss.](../assets/tool_use_generation.png)
+![The model generates until it emits a tool call (orange); an external system executes it and injects the output (purple) into the sequence; the model continues. Multiple tool calls can occur in a single generation. During training, tool call outputs are masked from the loss.](assets/tool_use_generation.png)
 
 ### The model only sees tokens: tools live in the system prompt
 
@@ -200,7 +200,7 @@ Claude Code, Codex CLI, and OpenHands are all popular harnesses — the same mod
 
 ### Same post-training applies
 
-![The tool-use RL loop.](../assets/tool_use_rl_loop.png)
+![The tool-use RL loop.](assets/tool_use_rl_loop.png)
 
 - **SFT** on tool trajectories — formatting and tool selection; establishes the skill.
 - **Preference tuning** still works, but is less popular today.
@@ -226,7 +226,7 @@ A fully open data-curation pipeline for agentic training data, ~100K trajectorie
 - **TMax-9B: 27.2% on Terminal-Bench 2.0** — the strongest open-weight model under 10B, beating the 32B variants of prior work.
 - Code, data, and models all released.
 
-![Model size vs. Terminal-Bench 2.0: TMax models (2B–27B) sit on the open-recipe Pareto frontier.](../assets/tmax-results.jpg)
+![Model size vs. Terminal-Bench 2.0: TMax models (2B–27B) sit on the open-recipe Pareto frontier.](assets/tmax-results.jpg)
 
 ### What actually made it hard
 
@@ -241,7 +241,7 @@ Most of the effort goes into stability during scaling, rather than speed or lear
 
 Kimi K3 (July 2026) spends one sentence on its RL algorithm (“follows the algorithm in Kimi K2.5”) and about seven pages on environments and sandboxes: **51,219,741 sandboxes** created during training, microVMs that checkpoint in 133ms, and mock Gmail/Notion/Slack “living environments” where one rollout can span thousands of tool calls. Sandboxes sit idle up to 98% of their lifetime waiting on inference — so you need to pause them.
 
-![Kimi K3: scores and average assistant steps both scale with RL FLOPs across eight agentic domains — tool-call depth is learned, not prompted.](../assets/kimi-k3-rl-scaling.jpg)
+![Kimi K3: scores and average assistant steps both scale with RL FLOPs across eight agentic domains — tool-call depth is learned, not prompted.](assets/kimi-k3-rl-scaling.jpg)
 
 ### Frontier practice: harness randomization
 
@@ -267,7 +267,7 @@ Nemotron 3 Ultra notes that as environments multiply, “each domain contributes
 
 GLM-5’s slides-RL policy discovered `overflow: hidden` to make an overflowing slide *measure* 16:9, and flex-padding to stretch short ones — the fix was patching the renderer, not the reward. Nemotron physically deletes future git commits and firewalls GitHub so SWE agents can’t read the gold patch; Kimi K3 ships a kernel-exploit detector and public/hidden verifier pairs.
 
-![GLM-5: two reward hacks from slide-generation RL, with the exploit CSS the policy wrote.](../assets/glm5-reward-hacking.jpg)
+![GLM-5: two reward hacks from slide-generation RL, with the exploit CSS the policy wrote.](assets/glm5-reward-hacking.jpg)
 
 ### More headaches
 

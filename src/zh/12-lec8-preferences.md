@@ -126,13 +126,13 @@ $$ P(y\_w \\succ y\_l \\mid x) = \\sigma\\!\\big(r(x,y\_w) - r(x,y\_l)\\big) = \
 
 获取偏好数据是关系驱动的：供应商产能有限，偏爱大预算与知名品牌。数百万美元被花掉并部分浪费；很少有团队有足够人力充分利用人类数据。合同通常限制部分数据的公开发布。即使只是简单的人类偏好数据，也需要一个稳健、现成的后训练配方来接入。
 
-![典型多批次人类数据合同（约 50 万美元）：早期阶段目标与方法收窄，前几个批次大量作废。](../assets/pref-data-timeline.png)
+![典型多批次人类数据合同（约 50 万美元）：早期阶段目标与方法收窄，前几个批次大量作废。](assets/pref-data-timeline.png)
 
 ### 指导数据收集：标注者指令
 
 合同签订后，买方与供应商会就每个任务约定**详细指令**——通常不会公开。最早的*公开*例子之一是 OpenAI 的 **InstructGPT** 标注者指令（2022），数页关于排序**有用、真实、无害**的指导——这才是真正塑造标签的规范。镜像 PDF 见 [rlhfbook.com/assets/instructgpt-instructions.pdf](https://rlhfbook.com/assets/instructgpt-instructions.pdf)。
 
-![InstructGPT“最终标注指令”（OpenAI，2022）。](../assets/instructgpt-instructions.jpg)
+![InstructGPT“最终标注指令”（OpenAI，2022）。](assets/instructgpt-instructions.jpg)
 
 ### 我们购买的数据集：No Robots
 

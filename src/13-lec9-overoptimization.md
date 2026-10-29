@@ -34,7 +34,7 @@ Colloquially: “When a measure becomes a target, it ceases to be a good measure
 
 **Over-optimization**: the model *genuinely improves* at the proxy objective — the reward model’s scores, including on a validation set — but that objective diverges from the true goal, actual user satisfaction. It is not a generalization problem but a measurement/metric problem. Gaming it looks like verbose, confident-sounding answers that score well without being more helpful, or repeating rare tokens that hit artifacts in RM training.
 
-![The shape of over-optimization: proxy reward keeps climbing while true quality peaks and declines.](../assets/overoptimization.png)
+![The shape of over-optimization: proxy reward keeps climbing while true quality peaks and declines.](assets/overoptimization.png)
 
 The recurring shape of RLHF training runs: the run looks healthy — training reward keeps climbing — but downstream evaluations peak and then decline. The gains come from regions of the reward model that do not map to real usage.
 
@@ -46,9 +46,9 @@ The seminal paper *Scaling Laws for Reward Model Overoptimization* (Gao, Schulma
 - Smaller **proxy RMs (3M–3B)** are trained on those labels; RL optimizes *the proxy only*.
 - Score the policy with both. The proxy (dashed) climbs forever; the gold (solid) peaks and falls.
 
-![Best-of-N: gold reward (solid) flattens and falls while the proxy (dashed) keeps climbing.](../assets/gao-overopt-bon.png)
+![Best-of-N: gold reward (solid) flattens and falls while the proxy (dashed) keeps climbing.](assets/gao-overopt-bon.png)
 
-![RL: same shape, ~10x more KL spent — and a much harder turnover for small RMs.](../assets/gao-overopt-rl.png)
+![RL: same shape, ~10x more KL spent — and a much harder turnover for small RMs.](assets/gao-overopt-rl.png)
 
 Larger proxy RMs turn over later and more gently. And since gold-labels-train-proxy is another proxy, real models diverge slightly differently.
 
@@ -60,7 +60,7 @@ Anthropic’s version of over-optimization:
 - RL against the train PM only; score the policy with both.
 - The x-axis is $\\sqrt{D\_{\\mathrm{KL}}}$ from the initial policy (how much the policy has changed).
 
-![Anthropic's train-PM vs test-PM experiment.](../assets/anthropic_overoptimization.png)
+![Anthropic's train-PM vs test-PM experiment.](assets/anthropic_overoptimization.png)
 
 ### What over-optimized models sound like
 
@@ -129,7 +129,7 @@ It was easy to juice chattiness at the expense of other skills. Preference metho
 
 In April 2024, Direct Nash Optimization reported a 7B model “beating GPT-4” on AlpacaEval; Self-Rewarding LMs disclosed similarly unrealistic scores. Neither holds up in real use against frontier models. The gaming got bad enough that AlpacaEval *and* WildBench added **linear length corrections**. Done right: Starling Beta — k-wise reward model + PPO on top of OpenChat, up 10 Arena places, with length that actually helps raters.
 
-![Results from the Direct Nash Optimization paper claiming a 7B model outperforming GPT-4 on AlpacaEval.](../assets/dno-figure.png)
+![Results from the Direct Nash Optimization paper claiming a 7B model outperforming GPT-4 on AlpacaEval.](assets/dno-figure.png)
 
 ### Llama 4’s Chatbot Arena special (April 2025)
 
