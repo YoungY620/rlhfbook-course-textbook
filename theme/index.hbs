@@ -342,25 +342,34 @@
         {{/each}}
 
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            (function() {
                 const langSwitch = document.getElementById('lang-switch');
                 if (!langSwitch) return;
+                // Works at any base path (local '/', GitHub Pages '/<repo>/'):
+                // find the 'zh' segment to learn the site root and current file.
+                const segs = window.location.pathname.split('/').filter(Boolean);
+                const zi = segs.indexOf('zh');
+                let base, file;
+                if (zi !== -1) {
+                    base = segs.slice(0, zi);
+                    file = segs.slice(zi + 1).join('/');
+                } else if (segs.length && segs[segs.length - 1].indexOf('.html') !== -1) {
+                    base = segs.slice(0, -1);
+                    file = segs[segs.length - 1];
+                } else {
+                    base = segs;
+                    file = '';
+                }
+                const root = ('/' + base.join('/')).replace(/\/+$/, '');
+                const isEnglish = {{#if (eq language "en")}}true{{else}}false{{/if}};
                 langSwitch.addEventListener('click', function() {
-                    const pathname = window.location.pathname;
-                    const isEnglish = !pathname.startsWith('/zh/') && !pathname.endsWith('/zh/');
                     if (isEnglish) {
-                        // Go to Chinese version of the same page
-                        if (pathname === '/' || pathname === '/index.html') {
-                            window.location.href = '/zh/';
-                        } else {
-                            window.location.href = '/zh' + pathname;
-                        }
+                        window.location.href = root + '/zh/' + file;
                     } else {
-                        // Go to English version
-                        window.location.href = pathname.replace(/^\/zh/, '') || '/';
+                        window.location.href = root + '/' + file;
                     }
                 });
-            });
+            })();
         </script>
 
         {{#if is_print}}
